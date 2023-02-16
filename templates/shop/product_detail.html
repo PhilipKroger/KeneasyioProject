@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+{% load static %}
+<title>{% block title %}ShowNewStyle / Product {{ product.id }}{% endblock %}</title>
+
+{% block content %}
+    <br><br><br><br><br><br>
+    <div style="margin-left: 20%;">
+        <h4><a href="{% url 'shop:product_list' %}" style="color: #16161d;">Назад</a></h4><br>
+
+        <img src="{{ product.image.url }}" alt="*" class="prd-img" style=" height:600px; width: auto; border-radius:5px;float: left; margin-right:40px; padding-right:20px;">
+        <h1> {{ product.title }}         </h1><br>
+        <table>
+            <tr>
+                <td style="padding-right: 50px"><p>Сезон</p></td><td><p>{{ product.season }}<br></p></td>
+            </tr>
+            <tr>
+                <td><p>Размер</p></td><td><p>{{ product.size }}<br></p></td>
+            </tr>
+            <tr>
+                <td><p>Цена</p></td><td><p>{{ product.price }}<br></p></td>
+            </tr>
+        </table>
+        <p>{{ product.text|safe }} </p><br>
+        <!--<p>  Ссылки <a href="{{ product.link }}">{{ product.link }}</a> </p><br>-->
+        <p>  Автор <a href="{% url 'profiles:other_account' product.author.id %}">{{ product.author }}</a></p><br>
+    <div style="clear: left"></div>
+    </div>
+    <br><br><br>
+{% endblock %}

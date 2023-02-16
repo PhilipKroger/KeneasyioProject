@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+<title>{% block title %}{{ user.username }}{% endblock %}</title>
+{% load static %}
+{% block content %}
+    <br><br><br><br><br><br>
+    <div style="clear: left"></div>
+        <div class="main_div" style="padding-left: 20%;">
+            <h1 class="nav__logo" style="float: left; font-family: 'Comfortaa', cursive;">{{ user.username }}</h1>
+            <p class="verified-user">verified</p>
+            <div style="clear: left"></div>
+            <p class="user-products-count">{{ products.count }} products</p>
+            <p><a href="http://127.0.0.1:8000/product_create/" class="user-create"> create product</a></p>
+            <div style="clear: left"></div>
+        </div>
+        <div  class="all-prd">
+            {% for product in products %}
+                <div class="prd-slot">
+                    <img src="https://cdn.discordapp.com/attachments/917495560376836106/1069276476576382986/image.png" alt="" class="prd-img">
+                    <table>
+                        <tr>
+                            <td><p class="prd-d">Title </p></td>
+                            <td><p class="prd-d-1"> {{ product.title }} </p></td>
+                        </tr>
+                        <tr>
+                            <td><p class="prd-d">Size</p></td>
+                            <td><p class="prd-d-2">{{ product.size }}</p></td>
+                        </tr>
+                        <tr>
+                            <td><p class="prd-d">Season</p></td>
+                            <td><p class="prd-d-3">{{ product.season }}</p></td>
+                        </tr>
+                        <tr>
+                            <td><p class="prd-d">Price</p></td>
+                            <td><p class="prd-d-4"> {{ product.price }} руб.</p></td>
+                        </tr>
+                    </table>
+                </div>
+            {% endfor %}
+        </div>
+    <br><br><br><br><br><br><br><br>
+{% endblock %}
