@@ -4,21 +4,20 @@
 {% block content %}
     <br><br><br><br><br>
     {% if request.user.is_verify %}
-        <div style="clear: left"></div>
-            <div class="main_div" style="padding-left: 20%;">
-                <h1 class="nav__logo" style="float: left; font-family: 'Comfortaa', cursive;">{{ user.username }}</h1>
-                <p class="verified-user">verified</p>
-                <div style="clear: left"></div>
-                <p class="verified-user">max.bondarev2005@gmail.com</p>
-                <div style="clear: left"></div>
-                <p class="verified-user">+79100029696</p>
-                <div style="clear: left"></div>
-                <b><p class="verified-user" style="color: #539ef3; ">Telegram Instagram</p></b>
-                <div style="clear: left"></div>
-                <p class="user-products-count">{{ products.count }} товара</p>
-                <p><a href="http://127.0.0.1:8000/product_create/" class="user-create"> Добавить набор</a></p>
-                <div style="clear: left"></div>
-            </div>
+
+        <div class="main_div" style="padding-left: 20%;">
+            <img src="{{ user.avatar.url }}" alt="" class="prd-img" style=" height:100px; width: auto; border-radius:50%; float: left;">
+                <h1 class="nav__logo" style="float: left; font-family: 'Comfortaa', cursive; padding-top: 30px;padding-left: 20px;">
+                    {{ user.username }}  #verified</h1><br>
+            <div style="clear: left"></div>
+            <p>{{ user.email }}</p>
+            <p>{{ user.phone }}</p>
+            <p>{{ user.description }}</p>
+            <div style="clear: left"></div>
+            <p class="user-products-count">{{ products.count }} товара</p>
+            <p><a href="http://127.0.0.1:8000/product_create/" class="user-create"> Добавить набор</a></p>
+            <div style="clear: left"></div>
+        </div>
         <br>
             <div  class="all-prd">
                 {% for product in products %}
@@ -26,30 +25,40 @@
                         <img src="{{ product.image.url }}" alt="" class="prd-img" style=" height:400px; width: auto; border-radius:5px;">
                         <table>
                             <tr>
-                                <td><p class="prd-d">Title </p></td>
+                                <td><p class="prd-d">Название </p></td>
                                 <td><p class="prd-d-1"> {{ product.title }} </p></td>
                             </tr>
                             <tr>
-                                <td><p class="prd-d">Size</p></td>
+                                <td><p class="prd-d">Размер</p></td>
                                 <td><p class="prd-d-2">{{ product.size }}</p></td>
                             </tr>
                             <tr>
-                                <td><p class="prd-d">Season</p></td>
+                                <td><p class="prd-d">Сезон</p></td>
                                 <td><p class="prd-d-3">{{ product.season }}</p></td>
                             </tr>
                             <tr>
-                                <td><p class="prd-d">Price</p></td>
+                                <td><p class="prd-d">Цена</p></td>
                                 <td><p class="prd-d-4"> {{ product.price }} руб.</p></td>
                             </tr>
+                            <a href="{% url 'profiles:product_delete' product.id %}">Удалить</a>
                         </table>
                     </div>
                 {% endfor %}
             </div>
     {% else %}
         <div class="main_div" style="padding-left: 20%;">
-            <h1 class="nav__logo" style="float: left; font-family: 'Comfortaa', cursive;">{{ user.username }}</h1><br>
+        <img src="{{ user.avatar.url }}" alt="" class="prd-img" style=" height:100px; width: auto; border-radius:50%; float: left;">
+            <h1 class="nav__logo" style="float: left; font-family: 'Comfortaa', cursive; padding-top: 30px;padding-left: 20px;">
+                {{ user.username }}
+            </h1><br>
             <div style="clear: left"></div>
-            <p><a href="{% url 'profiles:verify_user' %}">Стать стилистом</a></p>
+            <p>{{ user.email }}</p>
+            <p>{{ user.phone }}</p>
+            <p>{{ user.description }}</p>
+            <div style="clear: left"></div>
+            <br>
+            <p>Ваш профиль не имеет статуса верифицированного специалиста</p>
+            <p><a href="{% url 'profiles:verify_user' %}">СТАТЬ СТИЛИСТОМ</a></p>
         </div>
     {% endif %}
 

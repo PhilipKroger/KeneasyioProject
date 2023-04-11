@@ -30,8 +30,12 @@ class MyUserManager(BaseUserManager):
 
 class User(AbstractBaseUser):
     email = models.EmailField(verbose_name='email address', max_length=255, unique=True)
+    phone = models.CharField(verbose_name='phone number', max_length=12, unique=True, null=True)
     username = models.CharField(verbose_name='username', max_length=20, unique=True)
-    avatar = models.ImageField(upload_to='media/avatars/', null=True, blank=True)  # , default='media/avatars/default_avatar.png'
+
+    avatar = models.ImageField(upload_to='uploads', null=True, blank=True)
+    download_avatar = models.FileField(upload_to='uploads', blank=True, null=True)
+
     description = models.TextField(max_length=255, null=True, blank=True)
     user_admin_description = models.TextField(max_length=255, null=True, blank=True)
     is_verify = models.BooleanField(default=False)

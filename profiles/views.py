@@ -8,7 +8,9 @@ import datetime
 
 from profiles.forms import UserLoginForm, UserRegistrationForm, VerifyForm
 from shop.models import *
-
+#from .forms import UserForm
+from django.http import *
+from .models import *
 User = get_user_model()
 
 
@@ -30,7 +32,7 @@ def logout_view(request):
 
 
 def register_view(request):
-    form = UserRegistrationForm(request.POST or None)
+    form = UserRegistrationForm(request.POST, request.FILES)
     if form.is_valid():
         new_user = form.save(commit=False)
         new_user.set_password(form.cleaned_data['password'])
@@ -55,7 +57,18 @@ def user_account(request):
         email = request.user
         user = User.objects.get(email=email)
         products = Product.objects.filter(author=user)
+
         return render(request, 'users/profile.html', {'user': user, 'products': products})
+
+
+''' удаление данных из БД '''
+def product_delete(request, id):
+    try:
+        product = Product.objects.get(id=id)
+        product.delete()
+        return HttpResponseRedirect('/')
+    except Product.DoesNotExist:
+        return HttpResponseNotFound("<h2>ТОвар не найден</h2>")
 
 
 def other_account(request, account_id):
@@ -69,7 +82,7 @@ def other_account(request, account_id):
 
 
 def verify_user(request):
-    form = VerifyForm(request.POST or None)
+    form = VerifyForm(request.POST)
     if request.method == 'POST':
 
         if form.is_valid():
@@ -80,3 +93,8 @@ def verify_user(request):
             return redirect('/')
 
     return render(request, 'users/verify_form.html', {'form': form})
+
+
+def style_list(request):
+    users = User.objects.filter(is_verify=True)
+    return render(request, 'shop/all_imagemakes.html', {'users': users})

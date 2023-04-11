@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+<title>{% block title %} CanEasyIO / Products {% endblock title %}</title>
+
+{% block content %}<br><br><br><br><br><br>
+    <div class="all-prd">
+        {% for user in users %}
+            {% if user.email != 'admin@gmail.com' %}
+            <a href="{% url 'profiles:other_account' user.id %}" style="text-decoration: none; color: #100f0f;font-family: 'Comfortaa', cursive;">
+                <div class="stylist">
+                        <div class="stylist-left">
+                            <img class="stylist-avatar" src="{{ user.avatar.url }}" alt="" style="border-radius: 50%; width: 100px; float: left">
+                        </div>
+                        <div class="stylist-right">
+                            <h1 style="padding-left: 20px;">{{ user.username }}</h1>
+                            <p style="float: left; padding-left: 20px;">{{ user.email }}</p><br>
+                            <p style="float: left; padding-left: 20px;">{{ user.phone }}</p>
+                        </div>
+                </div>
+            </a>
+            <div style="clear: left"></div>
+            <br><br>
+            {% endif %}
+        {% endfor %}
+    </div>
+{% endblock content %}
+

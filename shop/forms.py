@@ -1,4 +1,6 @@
 from django import forms
+from django.forms import Textarea
+
 from .models import *
 
 from ckeditor.widgets import CKEditorWidget
@@ -32,3 +34,5 @@ class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = ('title', 'season', 'size', 'text', 'link', 'price', 'image')
+
+

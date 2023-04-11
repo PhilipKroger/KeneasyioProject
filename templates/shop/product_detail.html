@@ -25,5 +25,36 @@
         <p>  Автор <a href="{% url 'profiles:other_account' product.author.id %}">{{ product.author }}</a></p><br>
     <div style="clear: left"></div>
     </div>
+
     <br><br><br>
+
+    <div style="margin-left: 20%;">
+    {% for pr in oth_products %}
+        {% if pr.season == product.season and pr.size == product.size and pr.title != product.title and pr.price <= product.price %}
+        <a href="{% url 'shop:product_detail' pr.id %}" style="text-decoration: none; color: #100f0f;">
+            <div class="prd-slot">
+                <img src="{{ pr.image.url }}" alt="*" class="prd-img" style=" height:400px; width: auto; border-radius:5px;">
+                <table>
+                    <tr>
+                        <td><p class="prd-d">Название </p></td>
+                        <td><p class="prd-d-1"> {{ pr.title }} </p></td>
+                    </tr>
+                    <tr>
+                        <td><p class="prd-d">Размер</p></td>
+                        <td><p class="prd-d-2">{{ pr.size }}</p></td>
+                    </tr>
+                    <tr>
+                        <td><p class="prd-d">Сезон</p></td>
+                        <td><p class="prd-d-3">{{ pr.season }}</p></td>
+                    </tr>
+                    <tr>
+                        <td><p class="prd-d">Цена</p></td>
+                        <td><p class="prd-d-4"> {{ pr.price }} руб.</p></td>
+                    </tr>
+                </table><br>
+            </div>
+        </a>
+        {% endif %}
+    {% endfor %}
+    </div>
 {% endblock %}

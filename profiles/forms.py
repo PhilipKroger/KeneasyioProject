@@ -31,25 +31,28 @@ class UserLoginForm(forms.Form):
 
 class UserRegistrationForm(forms.ModelForm):
     email = forms.CharField(
-        label="Email",
+        label="Почта",
         widget=forms.EmailInput(attrs={'class': 'register_email_form', 'id': 'register_form_email_label'}))
+    phone = forms.CharField(
+        label="Телефон",
+        widget=forms.TextInput(attrs={'class': 'register_phone_form', 'id': 'register_form_phone_label'}))
     username = forms.CharField(
-        label="Username",
+        label="Имя",
         widget=forms.TextInput(attrs={'class': 'register_username_form', 'id': 'register_form_username_label'}))
     description = forms.CharField(
-        label="description",
+        label="Описание профиля",
         widget=forms.TextInput(attrs={'class': 'register_description_form', 'id': 'register_form_description_label'}))
-    avatar = forms.ImageField(label='Поставьте фото вашего аватара')
+    avatar = forms.ImageField(label='Фото вашего профиля')
     password = forms.CharField(
-        label="Password",
+        label="Пароль",
         widget=forms.PasswordInput(attrs={'class': 'register_password_form', 'id': 'register_form_password_label'}))
     password2 = forms.CharField(
-        label="Confirm the password",
+        label="Подтвержите пароль",
         widget=forms.PasswordInput(attrs={'class': 'register_password2_form', 'id': 'register_form_password2_label'}))
 
     class Meta:
         model = User
-        fields = ('email', 'username', 'avatar')
+        fields = ('email', 'phone', 'username', 'avatar', 'password', 'password2')
 
     def clean(self, *args, **kwargs):
         email = self.cleaned_data.get('email')

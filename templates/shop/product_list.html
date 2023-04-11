@@ -5,7 +5,7 @@
 {% block content %}<br><br><br><br><br>
     <div style="padding-left: 20%;padding-right: 20%; " class="werqwer">
         <form method="GET">
-            <p>{{ filter.form }}<button type="submit" style="display: inline-block;background: #7b81f5;color: #fff;padding: 12px;margin-left: 10px; border: none;border-radius: 3px;text-decoration: none;font-family: Tahoma;font-size: 18px;line-height: 1;font-weight: 100;cursor: pointer;">Filter</button></p>
+            <p>{{ filter.form }}<button type="submit" style="display: inline-block;background: #7b81f5;color: #fff;padding: 12px;margin-left: 10px; border: none;border-radius: 3px;text-decoration: none;font-family: Tahoma;font-size: 18px;line-height: 1;font-weight: 100;cursor: pointer;">Смотреть</button></p>
         </form>
     </div>
     <br>
@@ -18,19 +18,19 @@
                         <img src="{{ product.image.url }}" alt="*" class="prd-img" style=" height:400px; width: auto; border-radius:5px;">
                         <table>
                             <tr>
-                                <td><p class="prd-d">Title </p></td>
+                                <td><p class="prd-d">Название </p></td>
                                 <td><p class="prd-d-1"> {{ product.title }} </p></td>
                             </tr>
                             <tr>
-                                <td><p class="prd-d">Size</p></td>
+                                <td><p class="prd-d">Размер</p></td>
                                 <td><p class="prd-d-2">{{ product.size }}</p></td>
                             </tr>
                             <tr>
-                                <td><p class="prd-d">Season</p></td>
+                                <td><p class="prd-d">Сезон</p></td>
                                 <td><p class="prd-d-3">{{ product.season }}</p></td>
                             </tr>
                             <tr>
-                                <td><p class="prd-d">Price</p></td>
+                                <td><p class="prd-d">Цена</p></td>
                                 <td><p class="prd-d-4"> {{ product.price }} руб.</p></td>
                             </tr>
                         </table><br>

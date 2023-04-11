@@ -2,19 +2,30 @@
 {% load static %}
 <title>{% block title %}{{ user.username }}{% endblock %}</title>
 {% block content %}<br><br><br><br><br>
-    <div class="main_div" style="margin-left: 21%;">
-        <!--<img src="{{ user.avatar.url }}" class="other_profile_avatar_div" style="width: 100px; float: left; ">-->
+    <div class="main_div" style="padding-left: 20%;">
+        <img src="{{ user.avatar.url }}" alt="" class="prd-img" style=" height:100px; width: auto; border-radius:50%; float: left;">
+                <h1 class="nav__logo" style="float: left; font-family: 'Comfortaa', cursive; padding-top: 30px;padding-left: 20px;">
+                    {{ user.username }}</h1><br>
+            <div style="clear: left"></div>
+        <br>
+        <table>
+            <tr>
+                <td style="padding-right: 30px;">Почта:</td>
+                <td>{{ user.email }}</td>
+            </tr>
+            <tr>
+                <td style="padding-right: 30px;">Телефон:</td>
+                <td>{{ user.phone }}</td>
+            </tr>
+            <tr>
+                <td style="padding-right: 30px;">Описание:</td>
+                <td>{{ user.description }}</td>
+            </tr>
+        </table>
 
-        <h1 class="other_profile_username" style="padding-top: 20px; margin-left: 15px;">{{ user.username }}</h1>
-
-        <div style="clear: left"></div>
-        <p class="verified-user">max.bondarev2005@gmail.com</p>
-        <div style="clear: left"></div>
-        <p class="verified-user">+79100029696</p>
-        <div style="clear: left"></div>
-    <div style="clear: left"></div>
-    </div>
-
+            <div style="clear: left"></div>
+        </div>
+    <br><br>
     <div  class="all-prd">
             {% for product in user_posts %}
                 <a href="{% url 'shop:product_detail' product.id %}" style="text-decoration: none; color: #100f0f;">
@@ -22,19 +33,19 @@
                         <img src="{{ product.image.url }}" alt="" class="prd-img" style=" height:400px; width: auto; border-radius:5px;">
                         <table>
                             <tr>
-                                <td><p class="prd-d">Title </p></td>
+                                <td><p class="prd-d">Название </p></td>
                                 <td><p class="prd-d-1"> {{ product.title }} </p></td>
                             </tr>
                             <tr>
-                                <td><p class="prd-d">Size</p></td>
+                                <td><p class="prd-d">Размер</p></td>
                                 <td><p class="prd-d-2">{{ product.size }}</p></td>
                             </tr>
                             <tr>
-                                <td><p class="prd-d">Season</p></td>
+                                <td><p class="prd-d">Сезон</p></td>
                                 <td><p class="prd-d-3">{{ product.season }}</p></td>
                             </tr>
                             <tr>
-                                <td><p class="prd-d">Price</p></td>
+                                <td><p class="prd-d">Цена</p></td>
                                 <td><p class="prd-d-4"> {{ product.price }} руб.</p></td>
                             </tr>
                         </table>
