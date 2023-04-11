@@ -1,10 +1,6 @@
 from django.urls import path
 from django.conf.urls.static import static
-from django.conf import settings
-from profiles.views import login_view,\
-    logout_view,\
-    register_view, user_account, other_account, verify_user, style_list, product_delete
-
+from profiles.views import *
 
 urlpatterns = [
     path('login/', login_view, name='login'),

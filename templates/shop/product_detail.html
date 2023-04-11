@@ -6,9 +6,8 @@
     <br><br><br><br><br><br>
     <div style="margin-left: 20%;">
         <h4><a href="{% url 'shop:product_list' %}" style="color: #16161d;">Назад</a></h4><br>
-
         <img src="{{ product.image.url }}" alt="*" class="prd-img" style=" height:600px; width: auto; border-radius:5px;float: left; margin-right:40px; padding-right:20px;">
-        <h1> {{ product.title }}         </h1><br>
+        <h1> {{ product.title }}</h1><br>
         <table>
             <tr>
                 <td style="padding-right: 50px"><p>Сезон</p></td><td><p>{{ product.season }}<br></p></td>
@@ -21,14 +20,13 @@
             </tr>
         </table>
         <p>{{ product.text|safe }} </p><br>
-        <!--<p>  Ссылки <a href="{{ product.link }}">{{ product.link }}</a> </p><br>-->
         <p>  Автор <a href="{% url 'profiles:other_account' product.author.id %}">{{ product.author }}</a></p><br>
-    <div style="clear: left"></div>
+        <div style="clear: left"></div>
     </div>
 
     <br><br><br>
-
     <div style="margin-left: 20%;">
+
     {% for pr in oth_products %}
         {% if pr.season == product.season and pr.size == product.size and pr.title != product.title and pr.price <= product.price %}
         <a href="{% url 'shop:product_detail' pr.id %}" style="text-decoration: none; color: #100f0f;">

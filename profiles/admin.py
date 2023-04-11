@@ -46,14 +46,12 @@ class UserAdmin(BaseUserAdmin):
     form = UserChangeForm
     add_form = UserCreationForm
 
-    list_display = ('username', 'email', 'id', 'is_admin', 'is_verify')  # столбцы для отображения информации о
-                                                                         # пользователях
+    list_display = ('username', 'email', 'id', 'is_admin', 'is_verify')
     list_filter = ('is_admin', 'is_verify')
     fieldsets = (
         (None, {'fields': ('username', 'email', 'description', 'avatar', 'password',)}),
         ('Permissions', {'fields': ('is_admin', 'is_verify')}),
     )
-
     add_fieldsets = (
         (None, {
             'classes': ('wide',),

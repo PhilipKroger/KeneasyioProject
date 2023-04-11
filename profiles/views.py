@@ -1,16 +1,15 @@
 from django.contrib.auth import authenticate
 from django.contrib.auth import login, logout, get_user_model
-from django.http import Http404
 from django.shortcuts import redirect
 from django.shortcuts import render
-
-import datetime
+from django.http import *
 
 from profiles.forms import UserLoginForm, UserRegistrationForm, VerifyForm
+import datetime
 from shop.models import *
-#from .forms import UserForm
-from django.http import *
 from .models import *
+
+
 User = get_user_model()
 
 
@@ -42,14 +41,6 @@ def register_view(request):
     return render(request, 'users/register.html', {'form': form})
 
 
-def delete_view(request):
-    if request.user.is_authenticated:
-        user = request.user
-        if request.method == 'POST':
-            User.objects.get(pk=user.pk)
-    return redirect('/')
-
-
 def user_account(request):
     if not request.user.is_authenticated:
         return redirect('/')
@@ -57,12 +48,11 @@ def user_account(request):
         email = request.user
         user = User.objects.get(email=email)
         products = Product.objects.filter(author=user)
-
         return render(request, 'users/profile.html', {'user': user, 'products': products})
 
 
-''' удаление данных из БД '''
 def product_delete(request, id):
+    """ удаление товара из БД """
     try:
         product = Product.objects.get(id=id)
         product.delete()

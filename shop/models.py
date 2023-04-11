@@ -2,7 +2,6 @@ from django.contrib.auth.models import User
 from django.conf import settings
 from django.db import models
 from ckeditor.fields import RichTextField
-from django.utils import timezone
 
 
 class CategorySeason(models.Model):
@@ -36,10 +35,8 @@ class Product(models.Model):
     price = models.IntegerField(verbose_name='Цена товара', default=0)
     text = RichTextField('Описание', null=True, blank=True)
     link = models.URLField(verbose_name='Ссылка', null=True, blank=True)
-
     image = models.ImageField(verbose_name='Фото товара', upload_to='uploads', null=True, blank=True)
     download_image = models.FileField(upload_to='uploads', blank=True, null=True)
-
     author = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, null=True)
     pubdate = models.DateTimeField('Время создания товара', null=True, blank=True)
 
