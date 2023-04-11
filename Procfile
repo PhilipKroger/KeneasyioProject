@@ -1,0 +1,1 @@
+web: gunicorn ShowNewStyle.wsgi --log-file -
